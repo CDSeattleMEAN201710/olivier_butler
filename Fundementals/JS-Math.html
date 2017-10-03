@@ -1,0 +1,69 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JS Mathematics</title>
+        <script>
+            // Math 1
+            function zero_negativity(inputArr){
+                for (value of inputArr){
+                    if ((typeof value == "number") && (value < 0)){
+                        return false
+                    }
+                }
+                return true
+            }
+            // console.log(zero_negativity([2,3,6,1,99,3/4]))
+            // console.log(zero_negativity([2,3,-6,1,99,3/4]))
+
+            // Math 2
+            function is_even(num){
+                if (num % 2 === 0){
+                    return true
+                }
+                return false
+            }
+            // console.log(is_even("boo"))
+            // console.log(is_even("1499"))
+            // console.log(is_even("99998"))
+
+            // Math 3
+            function how_many_even(inputArr){
+                let evenCount = 0
+                for (val of inputArr){
+                    if (is_even(val)) {
+                        evenCount += 1
+                    }
+                }
+                return evenCount
+            }
+            //console.log(how_many_even([2,5,9,"foot", 12/2, 4, 9]))
+
+            // Math 4
+            function create_dumb_array(desiredArrLength){
+                let outputArr = []
+                for (let idx = 0; idx < desiredArrLength; idx += 1){
+                    let randomNum = Math.floor(Math.random() * 10)
+                    outputArr.push(randomNum)
+                }
+                return outputArr
+            }
+            //console.log(create_dumb_array(99))
+
+            // Math 5
+            function random_defined_choice(inputArr){
+                let returnVal = undefined
+                while(returnVal === undefined){
+                    let randomIndex = Math.floor(Math.random() * inputArr.length)
+                    returnVal = inputArr[randomIndex]
+                }
+                return returnVal
+            }
+            //console.log(random_defined_choice([undefined,5,24,undefined,undefined,undefined,7,1,22,59,3,85,342,7,2]))
+        </script>
+    </head>
+    <body>
+        <h1>Wrong place, homie</h1>
+        <p>Check the logs</p>
+    </body>
+</html>
