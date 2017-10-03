@@ -1,0 +1,44 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JS Intermediate</title>
+        <script>
+            /***********************************/
+            /* Returns a string of astericks * */
+            /***********************************/
+            // You can specify a charachter to use instead of * as the second parameter
+            function starString(inputLength, starChar = "*"){
+                let outputString = ""
+                for (let idx = 0; idx < inputLength; idx += 1){
+                    outputString = outputString + starChar
+                }
+                return outputString
+            }
+            //console.log(drawString(8))
+
+            /*******************************************/
+            /* Given array, prints stars for each item */
+            /*******************************************/
+            // Array must contain only integers or strings
+            // For an int n, the function will print n many stars
+            // For a string "boopy"[5], the function will print "bbbbb"[5]
+            function drawStars(inputArr){
+                for (item of inputArr){
+                    if (typeof item == "number"){
+                        console.log(starString(item))
+                    } else {
+                        let newLength = item.length
+                        let starChar = item[0].toLowerCase()
+                        console.log(starString(newLength, starChar))
+                    }
+                }
+            }
+            drawStars([3,4,8,1,22,4,8,6,"Great balls of fire"])
+        </script>
+    </head>
+    <body>
+        <h1>I am the hollow DOM</h1>
+        <p>Go check my logs</p>
+    </body>
+</html>
