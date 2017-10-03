@@ -1,0 +1,41 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript Basics 2</title>
+        <script>
+            function magic_beans(x, y){
+                if (typeof y == "string"){
+                    console.log("You can't multiply by a string")
+                } 
+                else if (typeof x == "string") {
+                    var output = ""
+                    for (let idx = 0; idx < y; idx += 1){
+                        output = output + x
+                    }
+                    console.log(output)
+                } 
+                else if (x === 0 && y === 0){
+                    console.log("All inputs 0, you dummy")
+                } 
+                else if (Array.isArray(x)){
+                    for (let index in x){
+                        x[index] = x[index] * y
+                    }
+                    console.log(x)
+                } 
+                else {
+                    console.log(x * y)
+                }
+            }
+            magic_beans(0, 0)
+            magic_beans(2, 6)
+            magic_beans([2,5,4,1], 2)
+            magic_beans("boop ", 4)
+        </script>
+    </head>
+    <body>
+        <h1>Nothing here</h1>
+        <p>Check the logs</p>
+    </body>
+</html>
