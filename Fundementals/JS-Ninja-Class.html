@@ -1,0 +1,39 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Taking Ninjas to School since '17</title>
+        <script>
+            var ninjaConstructor = function(name){
+                var self = this,
+                    speed = 3,
+                    strength = 3;
+                this.health = 100
+                this.name = name
+                this.sayName = function(){
+                    console.log(`Hi, my name is ${this.name}`)
+                    return this
+                }
+                this.showStats = function(){
+                    console.log("---------------")
+                    console.log(`${this.name}'s stats`)
+                    console.log(`STRENGTH: ${strength}`)
+                    console.log(`SPEED: ${speed}`)
+                    console.log(`HEALTH: ${this.health}`)
+                    return this
+                }
+                this.drinkSake = function(){
+                    this.health += 10
+                    return this
+                }
+            }
+
+            let ninja = new ninjaConstructor("Ninja Joe")
+            ninja.sayName().showStats().drinkSake().drinkSake().showStats()
+        </script>
+    </head>
+    <body>
+        <h1>Caution, Ninjas Training</h1>
+        <p>Check the logs for their progress, commander.</p>
+    </body>
+</html>
