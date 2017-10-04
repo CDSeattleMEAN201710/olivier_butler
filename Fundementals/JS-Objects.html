@@ -1,0 +1,58 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JS Objects</title>
+        <script>
+            // A function which prints out the name and cohort from an array of objects
+            function printNamesAndCohot(inputArr){
+               for (student of inputArr){
+                   console.log(`Name: ${student.name}, Month: ${student.cohort}`)
+               }
+            }
+            let students = [
+                {name: 'Remy', cohort: 'Jan'},
+                {name: 'Genevieve', cohort: 'March'},
+                {name: 'Chuck', cohort: 'Jan'},
+                {name: 'Osmund', cohort: 'June'},
+                {name: 'Nikki', cohort: 'June'},
+                {name: 'Boris', cohort: 'June'}
+            ];
+            //printNamesAndCohot(students)
+
+            // A function to print out the users in a particular format
+            function printWithHeadingsAndCount(inputObj){
+                console.log("EMPLOYEES")
+                let count = 0
+                for (person of inputObj.employees){
+                    let nameLength = person.first_name.length + person.last_name.length
+                    console.log(`${++count} - ${person.first_name.toUpperCase()}, ${person.last_name.toUpperCase()} - ${nameLength}`)
+                }
+                console.log("MANAGERS")
+                count = 0
+                for (person of inputObj.managers){
+                    let nameLength = person.first_name.length + person.last_name.length
+                    console.log(`${++count} - ${person.last_name.toUpperCase()}, ${person.first_name.toUpperCase()} - ${nameLength}`)
+                }
+            }
+            let users = {
+                employees: [
+                    {'first_name':  'Miguel', 'last_name' : 'Jones'},
+                    {'first_name' : 'Ernie', 'last_name' : 'Bertson'},
+                    {'first_name' : 'Nora', 'last_name' : 'Lu'},
+                    {'first_name' : 'Sally', 'last_name' : 'Barkyoumb'}
+                ],
+                managers: [
+                   {'first_name' : 'Lillian', 'last_name' : 'Chambers'},
+                   {'first_name' : 'Gordon', 'last_name' : 'Poe'}
+                ]
+             }
+
+             printWithHeadingsAndCount(users)
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
