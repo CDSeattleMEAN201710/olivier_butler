@@ -7,7 +7,15 @@
             var ninjaConstructor = function(name){
                 var self = this,
                     speed = 3,
-                    strength = 3;
+                    strength = 3,
+                    attack = function(evilNinja, attackName, attackValue){
+                        if (evilNinja instanceof ninjaConstructor){
+                            evilNinja.health -= attackValue
+                            console.log(`Shakedown in Ninja Town! ${self.name} ${attackName} ${evilNinja.name}, knocking off ${attackValue} health.`)
+                        } else {
+                            console.log(`Master, only ninjas can be ${attackName} by ${self.name}.`)
+                        }
+                    }
                 this.health = 100
                 this.name = name
                 this.sayName = function(){
@@ -16,20 +24,37 @@
                 }
                 this.showStats = function(){
                     console.log("---------------")
-                    console.log(`${this.name}'s stats`)
+                    console.log(`STATS FOR ${this.name}`)
                     console.log(`STRENGTH: ${strength}`)
                     console.log(`SPEED: ${speed}`)
                     console.log(`HEALTH: ${this.health}`)
+                    console.log("---------------")
                     return this
                 }
                 this.drinkSake = function(){
                     this.health += 10
                     return this
                 }
+                this.punch = function(evilNinja) {
+                    attack(evilNinja, "punched", 5)
+                    return this
+                }
+                this.kick = function(evilNinja) {
+                    let attackValue = strength * 15
+                    attack(evilNinja, "kicked", attackValue)
+                    return this
+                }
+                
             }
 
-            let ninja = new ninjaConstructor("Ninja Joe")
-            ninja.sayName().showStats().drinkSake().drinkSake().showStats()
+            let ninja1 = new ninjaConstructor("Ninja Joe")
+            let ninja2 = new ninjaConstructor("Ninja Jessica")
+            ninja1.sayName().showStats()
+            ninja1.punch(ninja2)
+            ninja2.kick(ninja1)
+            ninja2.kick("tomato")
+            ninja1.showStats()
+            ninja2.showStats()
         </script>
     </head>
     <body>
