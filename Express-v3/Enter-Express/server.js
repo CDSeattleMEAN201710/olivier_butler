@@ -1,6 +1,8 @@
 var express = require("express")
 var app = express()
 
+app.use(express.static(__dirname + "/static"));
+
 app.get('/', function(request, response){
     response.send("<h1>Hi Guys!</h1>")
 })
@@ -22,4 +24,5 @@ app.get('/stats', function(request, response){
 
 app.listen(8882, function(){
     console.log("We're listening on port 8882!")
+    console.log(__dirname)
 })
