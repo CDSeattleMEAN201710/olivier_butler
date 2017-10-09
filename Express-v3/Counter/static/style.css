@@ -1,0 +1,41 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-image: url('http://l7.alamy.com/zooms/3f631eecb46040bd803867f53e6f8954/pile-of-abandoned-computers-and-monitors-in-empty-school-classroom-c2njr3.jpg');
+    background-size: cover;
+    background-position: center top;
+}
+
+.main{
+    padding: 3em;
+}
+
+p, form{
+    text-align: center;
+}
+
+.bigCounter{
+    font-size: 5em;
+    display: inline-block;
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 5em;
+    width: 2em;
+}
+
+input[type="submit"] {
+    background: white;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    border-radius: 3em;
+    padding: 1em;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
