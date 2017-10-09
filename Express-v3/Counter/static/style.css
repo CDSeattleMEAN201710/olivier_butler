@@ -39,3 +39,13 @@ input[type="submit"] {
        -moz-user-select: none;
         -ms-user-select: none;
 }
+
+.little{
+    margin-top: 1em;
+    font-size: 0.8em;
+}
+
+.tiny{
+    margin-top:1em;
+    font-size: 0.6em;
+}
