@@ -1,0 +1,673 @@
+MongoDB shell version v3.4.9
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.9
+Server has startup warnings: 
+2017-10-09T13:07:25.894-0700 I CONTROL  [initandlisten] 
+2017-10-09T13:07:25.894-0700 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2017-10-09T13:07:25.894-0700 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2017-10-09T13:07:25.894-0700 I CONTROL  [initandlisten] 
+2017-10-09T13:07:25.894-0700 I CONTROL  [initandlisten] 
+2017-10-09T13:07:25.895-0700 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+> show db
+2017-10-09T14:10:53.365-0700 E QUERY    [thread1] Error: don't know how to show [db] :
+shellHelper.show@src/mongo/shell/utils.js:906:11
+shellHelper@src/mongo/shell/utils.js:659:15
+@(shellhelp2):1:1
+> show
+2017-10-09T14:11:06.314-0700 E QUERY    [thread1] Error: don't know how to show [] :
+shellHelper.show@src/mongo/shell/utils.js:906:11
+shellHelper@src/mongo/shell/utils.js:659:15
+@(shellhelp2):1:1
+> show dbs
+admin  0.000GB
+local  0.000GB
+> use dojo
+switched to db dojo
+> db.createCollection("best_collection")
+{ "ok" : 1 }
+> db.best_collection.insert({name: "Batman", superpowers: "White privilege"})
+WriteResult({ "nInserted" : 1 })
+> db.best_collection.in
+db.best_collection.initializeOrderedBulkOp(    db.best_collection.insertMany(
+db.best_collection.initializeUnorderedBulkOp(  db.best_collection.insertOne(
+db.best_collection.insert(
+> db.best_collection.insert({name: "Gwenpool", superpowers: null})
+WriteResult({ "nInserted" : 1 })
+> db.best_collection.find({superpowers: null})
+{ "_id" : ObjectId("59dbe6d525b67ea55a3e2f37"), "name" : "Gwenpool", "superpowers" : null }
+> db.best_collection.find({superpowers: null}).pretty()
+{
+	"_id" : ObjectId("59dbe6d525b67ea55a3e2f37"),
+	"name" : "Gwenpool",
+	"superpowers" : null
+}
+> db.best_collection.find().pretty()
+{
+	"_id" : ObjectId("59dbe67125b67ea55a3e2f36"),
+	"name" : "Batman",
+	"superpowers" : "White privilege"
+}
+{
+	"_id" : ObjectId("59dbe6d525b67ea55a3e2f37"),
+	"name" : "Gwenpool",
+	"superpowers" : null
+}
+> db.best_collection.update({}{school: undefined})
+2017-10-09T15:00:05.561-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:28
+> db.best_collection.update({},{school: undefined})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.best_collection.find().pretty()
+{ "_id" : ObjectId("59dbe67125b67ea55a3e2f36"), "school" : undefined }
+{
+	"_id" : ObjectId("59dbe6d525b67ea55a3e2f37"),
+	"name" : "Gwenpool",
+	"superpowers" : null
+}
+> db.best_collection.update({school}, {name: "batman", superpowers: "Being very rich and sad"}}
+2017-10-09T15:01:38.727-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:92
+> db.best_collection.update({school: {$exists: true}}}, {name: "batman", superpowers: "Being very rich and sad"}}
+2017-10-09T15:03:32.330-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:51
+> db.best_collection.find().pretty()
+{ "_id" : ObjectId("59dbe67125b67ea55a3e2f36"), "school" : undefined }
+{
+	"_id" : ObjectId("59dbe6d525b67ea55a3e2f37"),
+	"name" : "Gwenpool",
+	"superpowers" : null
+}
+> db.best_collection.update({school: {$exists: true}}}, {name: "batman", superpowers: "Being very rich and sad"}})
+2017-10-09T15:03:53.044-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:51
+> db.best_collection.update({school: {$exists: true}}, {name: "batman", superpowers: "Being very rich and sad"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.best_collection.find().pretty()
+{
+	"_id" : ObjectId("59dbe67125b67ea55a3e2f36"),
+	"name" : "batman",
+	"superpowers" : "Being very rich and sad"
+}
+{
+	"_id" : ObjectId("59dbe6d525b67ea55a3e2f37"),
+	"name" : "Gwenpool",
+	"superpowers" : null
+}
+> clear
+2017-10-09T15:55:54.085-0700 E QUERY    [thread1] ReferenceError: clear is not defined :
+@(shell):1:1
+> use my_first_db
+switched to db my_first_db
+> db.createCollection("students")
+{ "ok" : 1 }
+> db.students.insert({name: "Gandalf", home_state: "Valinor", lucky_number: 3, birthday: {month: 2, day: 14, year: 3019}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: “Megatron”, home_state: “Cybertron”, lucky_number: 01101, birthday: {month: 8, day: 2, year: 1984}})
+2017-10-09T16:07:11.562-0700 E QUERY    [thread1] SyntaxError: illegal character @(shell):1:26
+> db.students.insert({name: "Megatron", home_state: "Cybertron", lucky_number: 01101, birthday: {month: 8, day: 2, year: 1984}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "Biro", home_state: "Bic", lucky_number: 20, birthday: {month: 6, day: 12, year: 2015}})
+WriteResult({ "nInserted" : 1 })
+> db.students.inser({name: "Jesus", home_state: "Nazareth", lucky_number: 9, birthday: {month: 3, day: 3, year: 3}})
+2017-10-09T16:08:43.101-0700 E QUERY    [thread1] TypeError: db.students.inser is not a function :
+@(shell):1:1
+> db.students.insert({name: "Jesus", home_state: "Nazareth", lucky_number: 9, birthday: {month: 3, day: 3, year: 3}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc010e25b67ea55a3e2f38"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	}
+}
+{
+	"_id" : ObjectId("59dc013325b67ea55a3e2f39"),
+	"name" : "Megatron",
+	"home_state" : "Cybertron",
+	"lucky_number" : 577,
+	"birthday" : {
+		"month" : 8,
+		"day" : 2,
+		"year" : 1984
+	}
+}
+{
+	"_id" : ObjectId("59dc015c25b67ea55a3e2f3a"),
+	"name" : "Biro",
+	"home_state" : "Bic",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 6,
+		"day" : 12,
+		"year" : 2015
+	}
+}
+{
+	"_id" : ObjectId("59dc018425b67ea55a3e2f3b"),
+	"name" : "Jesus",
+	"home_state" : "Nazareth",
+	"lucky_number" : 9,
+	"birthday" : {
+		"month" : 3,
+		"day" : 3,
+		"year" : 3
+	}
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	}
+}
+> db.students.find({home_state:{$in:["Bird World", "Cybertron"]}}).pretty()
+{
+	"_id" : ObjectId("59dc013325b67ea55a3e2f39"),
+	"name" : "Megatron",
+	"home_state" : "Cybertron",
+	"lucky_number" : 577,
+	"birthday" : {
+		"month" : 8,
+		"day" : 2,
+		"year" : 1984
+	}
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	}
+}
+> db.student.find({lucky_number:{$gt: 3}})
+> db.students.find({lucky_number:{$gt: 3}})
+{ "_id" : ObjectId("59dc013325b67ea55a3e2f39"), "name" : "Megatron", "home_state" : "Cybertron", "lucky_number" : 577, "birthday" : { "month" : 8, "day" : 2, "year" : 1984 } }
+{ "_id" : ObjectId("59dc015c25b67ea55a3e2f3a"), "name" : "Biro", "home_state" : "Bic", "lucky_number" : 20, "birthday" : { "month" : 6, "day" : 12, "year" : 2015 } }
+{ "_id" : ObjectId("59dc018425b67ea55a3e2f3b"), "name" : "Jesus", "home_state" : "Nazareth", "lucky_number" : 9, "birthday" : { "month" : 3, "day" : 3, "year" : 3 } }
+{ "_id" : ObjectId("59dc01a225b67ea55a3e2f3c"), "name" : "Bird Person", "home_state" : "Bird World", "lucky_number" : 66, "birthday" : { "month" : 5, "day" : 28, "year" : 1990 } }
+> db.students.find({lucky_number:{$lte: 3}})
+{ "_id" : ObjectId("59dc010e25b67ea55a3e2f38"), "name" : "Gandalf", "home_state" : "Valinor", "lucky_number" : 3, "birthday" : { "month" : 2, "day" : 14, "year" : 3019 } }
+> db.students.find({$and: [{'lucky_number':{$gt:10}},{'lucky_number':{$lt:100}}]}).pretty()
+{
+	"_id" : ObjectId("59dc015c25b67ea55a3e2f3a"),
+	"name" : "Biro",
+	"home_state" : "Bic",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 6,
+		"day" : 12,
+		"year" : 2015
+	}
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	}
+}
+> db.student.update({},{$set:{interests:['coding','brunch','MongoDB']}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({},{$set:{interests:['coding','brunch','MongoDB']}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({},{$set:{interests:['coding','brunch','MongoDB']}},true)
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({},{$set:{interests:['coding','brunch','MongoDB']}},false)
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.updateMany({},{$set:{interests:['coding','brunch','MongoDB']}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 4 }
+> db.students.update({name: 'Bird Person'}, {$addToSet: {interests:['spirals']}}})
+2017-10-09T16:48:16.239-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:78
+> db.students.update({name: 'Bird Person'}, {$addToSet: {interests:['spirals']}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name: 'Batman'}, {$addToSet: {interests:['punching people']}})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({name: 'Gandalf'}, {$addToSet: {interests:['punching people']}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc010e25b67ea55a3e2f38"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		[
+			"punching people"
+		]
+	]
+}
+{
+	"_id" : ObjectId("59dc013325b67ea55a3e2f39"),
+	"name" : "Megatron",
+	"home_state" : "Cybertron",
+	"lucky_number" : 577,
+	"birthday" : {
+		"month" : 8,
+		"day" : 2,
+		"year" : 1984
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc015c25b67ea55a3e2f3a"),
+	"name" : "Biro",
+	"home_state" : "Bic",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 6,
+		"day" : 12,
+		"year" : 2015
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc018425b67ea55a3e2f3b"),
+	"name" : "Jesus",
+	"home_state" : "Nazareth",
+	"lucky_number" : 9,
+	"birthday" : {
+		"month" : 3,
+		"day" : 3,
+		"year" : 3
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		[
+			"spirals"
+		]
+	]
+}
+> db.students.update({name: 'Gandalf'}, {$pull: {interests:['punching people']}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc010e25b67ea55a3e2f38"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc013325b67ea55a3e2f39"),
+	"name" : "Megatron",
+	"home_state" : "Cybertron",
+	"lucky_number" : 577,
+	"birthday" : {
+		"month" : 8,
+		"day" : 2,
+		"year" : 1984
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc015c25b67ea55a3e2f3a"),
+	"name" : "Biro",
+	"home_state" : "Bic",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 6,
+		"day" : 12,
+		"year" : 2015
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc018425b67ea55a3e2f3b"),
+	"name" : "Jesus",
+	"home_state" : "Nazareth",
+	"lucky_number" : 9,
+	"birthday" : {
+		"month" : 3,
+		"day" : 3,
+		"year" : 3
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		[
+			"spirals"
+		]
+	]
+}
+> db.students.update({name: 'Bird Person'}, {$pull: {interests:['spirals']}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name: 'Bird Person'}, {$addToSet: {interests:'spirals'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc010e25b67ea55a3e2f38"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc013325b67ea55a3e2f39"),
+	"name" : "Megatron",
+	"home_state" : "Cybertron",
+	"lucky_number" : 577,
+	"birthday" : {
+		"month" : 8,
+		"day" : 2,
+		"year" : 1984
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc015c25b67ea55a3e2f3a"),
+	"name" : "Biro",
+	"home_state" : "Bic",
+	"lucky_number" : 20,
+	"birthday" : {
+		"month" : 6,
+		"day" : 12,
+		"year" : 2015
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc018425b67ea55a3e2f3b"),
+	"name" : "Jesus",
+	"home_state" : "Nazareth",
+	"lucky_number" : 9,
+	"birthday" : {
+		"month" : 3,
+		"day" : 3,
+		"year" : 3
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("59dc01a225b67ea55a3e2f3c"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"spirals"
+	]
+}
+> db.students.remove({$or: [{home_state:'Nazareth'}, {home_state: 'Bic'}]})
+WriteResult({ "nRemoved" : 2 })
+> db.students.remove({name: 'Megatron'})
+WriteResult({ "nRemoved" : 1 })
+> db.students.remove({},false)
+WriteResult({ "nRemoved" : 2 })
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}}))
+2017-10-09T17:05:12.467-0700 E QUERY    [thread1] SyntaxError: missing ; before statement @(shell):1:128
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}}))
+2017-10-09T17:05:19.634-0700 E QUERY    [thread1] SyntaxError: missing ; before statement @(shell):1:128
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "Gandalf", home_state: "Valinor", lucky_number: 3, birthday: {month: 2, day: 14, year: 3019}})
+WriteResult({ "nInserted" : 1 })
+> db.students.remove({},true)
+WriteResult({ "nRemoved" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc0ef825b67ea55a3e2f3e"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	}
+}
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}})
+WriteResult({ "nInserted" : 1 })
+> db.students.remove({lucky_number:{$gt:5}}, true)
+WriteResult({ "nRemoved" : 1 })
+> db.students.insert({name: "Bird Person", home_state: "Bird World", lucky_number: 66, birthday: {month: 5, day: 28, year: 1990}})
+WriteResult({ "nInserted" : 1 })
+> db.students.updateMany({},{$set:{'number_of_belts':0}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc0ef825b67ea55a3e2f3e"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"number_of_belts" : 0
+}
+{
+	"_id" : ObjectId("59dc0fd025b67ea55a3e2f40"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"number_of_belts" : 0
+}
+> db.students.updateMany({home_state:Valinor}, {$inc: { number_of_belts: 1}}})
+2017-10-09T17:13:21.287-0700 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:74
+> db.students.updateMany({home_state:Valinor}, {$inc: { number_of_belts: 1}})
+2017-10-09T17:13:33.746-0700 E QUERY    [thread1] ReferenceError: Valinor is not defined :
+@(shell):1:25
+> db.students.updateMany({home_state:'Valinor'}, {$inc: { number_of_belts: 1}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.students.updateMany({},{$rename:{number_of_belts:'poops_had'}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc0ef825b67ea55a3e2f3e"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"poops_had" : 1
+}
+{
+	"_id" : ObjectId("59dc0fd025b67ea55a3e2f40"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"poops_had" : 0
+}
+> db.students.updateMany({},{$unset:{'poops_had':""}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc0ef825b67ea55a3e2f3e"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	}
+}
+{
+	"_id" : ObjectId("59dc0fd025b67ea55a3e2f40"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	}
+}
+> db.students.updateMany({}, {$currentDate:{updated_on: "date"}})
+2017-10-09T17:29:09.713-0700 E QUERY    [thread1] WriteError: string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}). :
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "string is not valid type for $currentDate. Please use a boolean ('true') or a $type expression ({$type: 'timestamp/date'}).",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$currentDate" : {
+				"updated_on" : "date"
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:469:48
+Bulk/mergeBatchResults@src/mongo/shell/bulk_api.js:836:49
+Bulk/executeBatch@src/mongo/shell/bulk_api.js:906:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1150:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:627:17
+@(shell):1:1
+> db.students.updateMany({}, {$currentDate:{updated_on: true}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("59dc0ef825b67ea55a3e2f3e"),
+	"name" : "Gandalf",
+	"home_state" : "Valinor",
+	"lucky_number" : 3,
+	"birthday" : {
+		"month" : 2,
+		"day" : 14,
+		"year" : 3019
+	},
+	"updated_on" : ISODate("2017-10-10T00:29:52.559Z")
+}
+{
+	"_id" : ObjectId("59dc0fd025b67ea55a3e2f40"),
+	"name" : "Bird Person",
+	"home_state" : "Bird World",
+	"lucky_number" : 66,
+	"birthday" : {
+		"month" : 5,
+		"day" : 28,
+		"year" : 1990
+	},
+	"updated_on" : ISODate("2017-10-10T00:29:52.560Z")
+}
+> 
