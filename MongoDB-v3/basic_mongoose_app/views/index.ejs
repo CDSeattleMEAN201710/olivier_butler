@@ -1,0 +1,33 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Send a thing to a place</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>Hello user</h1>
+        <form method="POST" action="/users">
+            <label>
+                Name plz
+                <input type="text" name="name">
+            </label>
+            <label>
+                Age plz, no lies
+                <input type="text" name="age">
+            </label>
+            <input type="submit" value="FEED ME">
+        </form>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                <% for(var user of users){ %>
+                    <tr><td><%= user.name %></td><td><%= user.age %></td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </body>
+</html>
