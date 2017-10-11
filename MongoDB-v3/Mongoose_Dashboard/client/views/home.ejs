@@ -1,0 +1,23 @@
+<!doctype HTML>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Jelly Love</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h1>I love me some Jellys</h1>
+        <div class="jelly_container">
+            <% for (jellyfish of jellys) { %>
+                <div class="single_jelly">
+                    <h2>Name</h2>
+                    <ul>
+                        <% for (stat of jellyfish.info){ %>
+                            <li>stat of value</li>
+                        <% } %>
+                    </ul>
+                </div>
+            <% } %>
+        </div>
+    </body>
+</html>
