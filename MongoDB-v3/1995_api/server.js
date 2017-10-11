@@ -32,13 +32,18 @@ app.get('/new/:name/', function(request, response){
         response.redirect('/')
     })
 })
-app.get('/remove/:name/', function(){
-    Persion.find({},(err, response)=>{
-        console.log("Finish me plz")
+app.get('/remove/:name/', function(request, response){
+    Person.remove({name:request.params.name},(err)=>{
+        if(err !== null){ console.log('Could not delete user of ${request.params.name}')}
+        response.redirect('/')
     })
 })
-app.get('/:name/', function(){
-    
+
+app.get('/:name/', function(request, response){
+    Person.find({name: response.params.name}, function(err, data){
+        if (err !== null){ console.log("We messed up finding your user")}
+        response.send(data)
+    })
 })
 
 
