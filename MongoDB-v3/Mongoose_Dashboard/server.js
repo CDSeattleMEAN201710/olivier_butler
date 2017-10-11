@@ -11,26 +11,37 @@ app.set('view engine', 'ejs')
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/dashboard-1', {useMongoClient: true})
+const JellySchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    superpower: {type: String, required: true},
+    squishiness: {type: String, required: true}
+})
+mongoose.model('Jelly', JellySchema)
+const Jelly = mongoose.model('Jelly')
+
 
 app.get('/', function(req, response){
-    const dumpJellyDB = [ 
-        { info: [1] }, 
-        { info: [1,1] }
-    ]
-    response.render('home', {jellys: dumpJellyDB})
+    Jelly.find({}, (err, data)=>{
+        console.log("Was there an error?" + err)
+        response.render('home', {jellys: data})
+    })
 })
-app.get('/jelly/new', function(){
+app.get('/jelly/new', function(req, response){
     response.render('new')
 })
-app.get('/jelly/:id', function(){
+app.get('/jelly/:id', function(req, response){
     response.render('single')
 })
-app.get('/jelly/edit/:id', function(){
-    response.render('edit', {pageTitle : "Edit"})
+app.get('/jelly/edit/:id', function(req, response){
+    response.render('new', {pageTitle : "Edit"})
 })
 
-app.post('/jelly', function(){
-    
+app.post('/jelly', function(request, response){
+    var newJelly = new Jelly(request.body)
+    newJelly.save((error)=>{
+        console.log("Was there an error? " + error)
+        response.redirect('/')
+    })
 })
 app.post('/jelly/:id', function(){
     

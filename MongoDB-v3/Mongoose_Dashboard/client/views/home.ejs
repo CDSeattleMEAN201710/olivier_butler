@@ -10,11 +10,10 @@
         <div class="jelly_container">
             <% for (jellyfish of jellys) { %>
                 <div class="single_jelly">
-                    <h2>Name</h2>
+                    <h2>Name <%= jellyfish.name %></h2>
                     <ul>
-                        <% for (stat of jellyfish.info){ %>
-                            <li>stat of value</li>
-                        <% } %>
+                        <li>Superpower: <%= jellyfish.superpower %></li>
+                        <li>Squishability: <%= jellyfish.squishiness %></li>
                     </ul>
                 </div>
             <% } %>

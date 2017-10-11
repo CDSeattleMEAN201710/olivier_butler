@@ -19,9 +19,9 @@ module.exports = {
         response.send("You suck. Use your back button and try again.")
     },
 
-    processPost : function(request, response, next){
-        var user = new Post(request.body)
-        user.save((error) => {
+    processPost : function(request, response){
+        var aPost = new Post(request.body)
+        aPost.save((error) => {
             if (error){
                 console.log("Error")
                 response.redirect('/error')
