@@ -1,0 +1,10 @@
+.barcode_wrapper {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.colour_block{ 
+    width: 3em;
+    height: 3em;
+    display: inline-block;
+}

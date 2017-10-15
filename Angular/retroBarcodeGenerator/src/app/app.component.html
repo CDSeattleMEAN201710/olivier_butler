@@ -1,0 +1,10 @@
+<div [ngClass]="{'barcode_wrapper':true}">
+  <h1>{{ title }}</h1>
+  <p *ngIf="randomColours" >
+    <ng-container *ngFor="let colour of randomColours">
+        <div [ngClass]="{'colour_block':true}" [ngStyle]="{'background-color':colour}">
+          
+        </div>
+    </ng-container>
+  </p>
+</div>
