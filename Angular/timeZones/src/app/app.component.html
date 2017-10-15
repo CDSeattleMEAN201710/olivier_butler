@@ -2,8 +2,8 @@
   <h1>{{ title }}</h1>
   <p class="big_time">{{ time | date:'shortTime' }}</p>
   <div>
-    <ng-container *ngFor="let zone of zones">
-      <button #item (click)="adjustTime(item.value)" value="{{zone.offset}}">{{ zone.name }}</button>
+    <ng-container *ngFor="let zone of zones; let i = index">
+      <button #item (click)="adjustTime(item.value)" value="{{i}}" [ngClass]="{'last_clicked_button': zone.active}">{{ zone.name }}</button>
     </ng-container>
   </div>
 </div>

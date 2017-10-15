@@ -12,3 +12,7 @@
     font-weight: bolder;
     margin: 0;
 }
+
+.last_clicked_button{
+    background-color: yellow;
+}
