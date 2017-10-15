@@ -1,0 +1,14 @@
+.clock_wrapper {
+    text-align: center;
+}
+
+.clock_wrapper button{
+    display: inline-block;
+}
+
+.clock_wrapper .big_time{
+    font-family: Courier New, Courier, monospace;
+    font-size: 4em;
+    font-weight: bolder;
+    margin: 0;
+}
