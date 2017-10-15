@@ -1,0 +1,24 @@
+<div [ngClass]="{'main_wrapper': true}">
+  <h1 [ngClass]="{'title': true, 'page_title': true}">
+    {{title}}
+  </h1>
+  <table *ngIf="emails">
+    <thead [ngClass]="{'title': true, 'padding_bottom': true}">
+      <th>Email</th>
+      <th>Priority</th>
+      <th>Subject</th>
+      <th>Context</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let email of emails">
+        <td>{{email.address}}</td>
+        <td>{{email.importance}}</td>
+        <td>{{email.subject}}</td>
+        <td>{{email.content}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!emails">
+    No emails for you, how sad.
+  </p>
+</div>

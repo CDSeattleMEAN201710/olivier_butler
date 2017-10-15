@@ -1,0 +1,21 @@
+.title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.page_title{
+    font-size: 3em;
+    margin-top: 0;
+}
+
+.padding_bottom th{
+    padding-bottom: 1em;
+}
+
+.main_wrapper{
+    display: inline-block;
+    border: 2px solid black;
+    padding: 2em;
+    margin: 1em;
+}
