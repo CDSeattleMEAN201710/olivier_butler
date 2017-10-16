@@ -1,0 +1,131 @@
+<div>
+  <h1>{{ title }}</h1>
+  <form #formController='ngForm'>
+    <div class="response" [hidden]="!formController.submitted">
+      <h2>Thank you!</h2>
+      <p>This form did nothing, it was all in vain.</p>
+    </div><br>
+    <div class="input_wrapper">
+      <h2>{{ formTitle }}</h2>
+      <label>First Name 
+        <input type="text" name="nameFirst"
+          required
+          [(ngModel)] = "user.nameFirst"
+          #nameFirst = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="nameFirst.valid || (nameFirst.pristine && !formController.submitted)">
+          Your first name is required
+      </p>
+
+      <label>Last Name 
+        <input type="text" name="nameLast"
+          required
+          [(ngModel)] = "user.nameLast"
+          #nameLast = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="nameLast.valid || (nameLast.pristine && !formController.submitted)">
+          Your last name is required
+      </p>
+
+      <label>Email 
+        <input type="text" name="email"
+          required
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+          [(ngModel)] = "user.email"
+          #email = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="email.valid || (email.pristine && !formController.submitted)">
+          Your email is required and must be correctly formatted.
+      </p>
+
+      <label>Password 
+        <input type="text" name="passwordV1" 
+          required minlength="8"
+          validateEqual = "passwordV2"
+          reverse = "true"
+          [(ngModel)] = "user.password1"
+          #password1 = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="password1.valid || (password1.pristine && !formController.submitted)">
+          Your password must be at least 8 chars long.
+      </p>
+
+      <label>Confirm Password 
+        <input type="text" name="passwordV2" 
+          required
+          validateEqual = "passwordV1"
+          [(ngModel)] = "user.password2"
+          #password2 = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="password2.valid || (password2.pristine && !formController.submitted)">
+          Your passwords must match.
+      </p>
+      <label>Address 1 
+        <input type="text" name="addressLine1" 
+          required 
+          minlength="2"
+          [(ngModel)] = "user.address1"
+          #address1 = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="address1.valid || (address1.pristine && !formController.submitted)">
+          You must enter an address.
+      </p>
+      <label>Address 2 
+        <input type="text" name="addressLine2"
+          [(ngModel)] = "user.address2"
+        >
+      </label>
+      <label>City 
+        <input type="text" name="city" 
+          required 
+          minlength = "3"
+          [(ngModel)] = "user.city"
+          #city = "ngModel"
+        >
+      </label>
+      <p class="val_message" [hidden]="city.valid || (city.pristine && !formController.submitted)">
+          You must enter an city.
+      </p>
+      <label>State 
+        <select name="state" 
+          required 
+          [(ngModel)] = "user.state" 
+          #state = "ngModel"
+        >
+          <option value="NL">Neverland</option>
+          <option value="OC">Ocean</option>
+          <option value="SK">Sky Palace</option>
+          <option value="LV">Volcano Flats</option>
+        </select>
+      </label>
+      <p class="val_message" [hidden]="state.valid || (state.pristine && !formController.submitted)">
+          You choose a state.
+      </p>
+      <label>
+        To live or to persist? 
+        <input type="radio" name="existential" 
+          required 
+          value="true" 
+          [(ngModel)]= "user.existential"
+          #existential = "ngModel"
+        > Life
+        <input type="radio" name="existential" 
+          required 
+          value="false" 
+          [(ngModel)]= "user.existential"
+          #existential = "ngModel"
+        > Stasis
+      </label>
+      <p class="val_message" [hidden]="existential.valid || (existential.pristine && !formController.submitted)">
+          You choose.
+      </p>
+    </div>
+    <input type="submit" value="FIRE MISSILES" [disabled]="!formController.valid">
+  </form>
+</div>
