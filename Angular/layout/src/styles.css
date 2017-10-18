@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+h1, h2, h3{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-weight: bolder;
+}
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1.5em;
+}
+
+.section{
+    background-color: palegreen;
+    border: 3px solid black;
+    padding: 0 1.5em;
+    position: relative;
+    margin-bottom: 1.5em;
+    margin-right: 1.5em;
+}
+
+.info{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: white;
+    font-family: monospace;
+    margin:0;
+    padding: 0;
+}

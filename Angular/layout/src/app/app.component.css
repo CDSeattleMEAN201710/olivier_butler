@@ -1,0 +1,11 @@
+app-header{
+    flex: 1 1 100%;
+}
+
+app-nav{
+    flex: 0 0 10em;
+}
+
+app-main{
+    flex: 1 0 10em;
+}
