@@ -1,0 +1,6 @@
+<h1>Existing Rabbles</h1>
+<ng-container *ngIf='allQuotes'>
+    <ng-container *ngFor='let quote of allQuotes; let idx = index'>
+        <app-quote class="border_plz" [quote]="allQuotes[idx]" (voteEvent)="processVote($event, idx)"></app-quote>
+    </ng-container>
+</ng-container>

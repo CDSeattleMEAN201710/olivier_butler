@@ -1,0 +1,16 @@
+.votes{
+    flex: 0 0 auto;
+}
+
+.content{
+    flex: 1 0 300px;
+}
+
+.count{
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+.votes button{
+    width: 100%;
+}

@@ -1,0 +1,11 @@
+<h1>Rabble Rabble</h1>
+<form>
+  <textarea name="comment" class="border_plz" [(ngModel)]="quote.comment">
+
+  </textarea>
+  <label>
+    Author
+    <input type="text" name="author" class="border_plz" [(ngModel)]="quote.author">
+  </label>
+  <input type="submit" name="submit" value="Rabble" class="border_plz" (click)="save()">
+</form>

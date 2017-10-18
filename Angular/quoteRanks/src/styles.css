@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+app-add{
+    max-width: 500px;
+    display:block;
+    text-align: right;
+}
+
+app-quote{
+    display: block;
+}
+
+h1, h2, h3{
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.border_plz{
+    border: 2px solid black;
+    padding: 1em 1em;
+    margin-bottom: 0.5em;
+}

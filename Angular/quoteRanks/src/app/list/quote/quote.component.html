@@ -1,0 +1,13 @@
+<div class="content">
+  <p>
+  {{ quote.comment }}
+  </p>
+  <p>
+  - {{ quote.author }}
+  </p>
+</div>
+<div class="votes">
+  <button class="border_plz" (click)="vote('up')">VoteUp</button>
+  <p class="border_plz count">{{ quote.vote }}</p>
+  <button class="border_plz" (click)="vote('down')">VoteDown</button>
+</div>
