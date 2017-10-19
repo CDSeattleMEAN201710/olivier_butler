@@ -10,11 +10,37 @@ import { Subscription } from 'rxjs/Subscription';
 export class DisplayresultComponent implements OnInit {
 
   constructor(private githubQuery: GithubQueryService) { 
-    this.resultSubscription = this.githubQuery.userData().subscribe( data => {this.resultData = data} )
+    this.githubQuery.userData().subscribe( this.processData )
   }
 
   resultSubscription: any
-  resultData: any
+  score: number
+  message: string
+  color: string
+  messages = [
+    [20, "Needs Work", "red"],
+    [50, "Decent Start", "orange"],
+    [100, "Doing Good", "black"],
+    [200, "Great Job", "green"],
+    ["Unrealistic", "blue"]
+  ]
+
+  processData = (data) => {
+    this.score = data.score
+    for (let message of this.messages){
+      console.log (message)
+      if (typeof message[0] === "string"){
+        this.message = String(message[0])
+        this.color = String(message[1])
+        break
+      }
+      if (message[0] > data.score){
+        this.message = String(message[1])
+        this.color = String(message[2])
+        break
+      }
+    }
+  }
 
   ngOnInit() {
     

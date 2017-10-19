@@ -1,2 +1,4 @@
-<h2>Result</h2>
-<p> {{ resultData | json }}</p>
+<div *ngIf="score">
+<h1> Your Score: {{ score }} </h1>
+<p [ngStyle]="{'color':color}" >{{ message }}</p>
+</div>

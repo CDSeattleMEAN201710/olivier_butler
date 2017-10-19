@@ -1,6 +1,6 @@
-<form>
+<form #formData='ngForm'>
   <label>
-    Github Username: <input type="text" name="input" [(ngModel)]='input'>
+    Github Username: <input type="text" name="input" [(ngModel)]='input' required>
   </label>
-  <input type="submit" (click)='processSubmit()'>
+  <input type="submit" (click)='processSubmit()' [disabled]="!formData.valid">
 </form>
