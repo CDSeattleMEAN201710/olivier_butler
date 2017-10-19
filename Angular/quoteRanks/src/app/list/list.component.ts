@@ -32,7 +32,6 @@ export class ListComponent implements OnInit {
         return 1
       }
       return -1
-      
     })
   }
 
