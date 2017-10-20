@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ManageDemonsService } from './../manage-demons.service'
+import { Demon } from './../demon'
 
 @Component({
   selector: 'app-list-demons',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListDemonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private demonManager: ManageDemonsService) { 
+    this.hellPop = this.demonManager.demonCage
+  }  
 
   ngOnInit() {
+    
   }
+
+  hellPop: any
 
 }

@@ -1,3 +1,5 @@
-<p>
-  list-demons works!
-</p>
+<div class="demon" *ngFor='let demon of hellPop'>
+  <img [src]="demon.image">
+  <h2>{{ demon.name }}</h2>
+  <p>Summing requires: {{ demon.requirements }}</p>
+</div>

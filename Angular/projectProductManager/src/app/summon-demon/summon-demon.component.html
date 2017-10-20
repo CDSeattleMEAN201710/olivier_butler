@@ -1,15 +1,15 @@
 <form>
   <label>
     Demon Name
-    <input type="text" name="name">
+    <input type="text" name="name" [(ngModel)]='formData.name'>
   </label><br>
   <label>
     Sacrifices Required
-    <input type="text" name="requirement">
+    <input type="text" name="requirement" [(ngModel)]='formData.requirements'>
   </label><br>
   <label>
     Visual Representation
-    <input type="text" name="image">
+    <input type="text" name="image" [(ngModel)]='formData.image'>
   </label><br>
   <input type="submit" value="SUMMON" (click)="processSubmit()">
 </form>

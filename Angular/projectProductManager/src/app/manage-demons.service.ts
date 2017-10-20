@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Demon } from './demon'
 
 @Injectable()
 export class ManageDemonsService {
 
-  constructor() { }
+  constructor() { 
+    this.demonCage = []
+  }
 
+  captureDemon(hellChild){
+    console.log(hellChild)
+    this.demonCage.push(hellChild)
+  }
+
+  demonCage: Array<Demon>
 }

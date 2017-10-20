@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ManageDemonsService } from './../manage-demons.service'
+import { Demon } from './../demon'
 
 @Component({
   selector: 'app-summon-demon',
@@ -8,11 +9,18 @@ import { ManageDemonsService } from './../manage-demons.service'
 })
 export class SummonDemonComponent implements OnInit {
 
-  constructor(private demonsService: ManageDemonsService) { }
+  constructor(private demonService: ManageDemonsService) { 
+    
+  }
+
+  formData: Demon = new Demon()
 
   processSubmit = () => {
-    console.log("Something")
+    console.log("Demon summoning requested")
+    this.demonService.captureDemon(this.formData)
+    this.formData = new Demon()
   }
+
   ngOnInit() {
   }
 
