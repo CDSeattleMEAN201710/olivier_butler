@@ -13,7 +13,6 @@ export class DisplayresultComponent implements OnInit {
     this.githubQuery.userData().subscribe( this.processData )
   }
 
-  resultSubscription: any
   score: number
   message: string
   color: string
