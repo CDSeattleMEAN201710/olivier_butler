@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+.outline{
+    border: 2px solid purple;
+    margin: 1em 0;
+    padding: 0.5em;
+}
