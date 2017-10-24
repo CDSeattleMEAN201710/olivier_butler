@@ -5,24 +5,51 @@ var mongoose = require("mongoose")
 
 var app = express()
 app.use(express.static(path.join(__dirname, './static/dist')))
-//app.use(bodyParser)
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+//app.use(bodyParser.urlencoded({extended: true}))
 
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/dashboard-1', {useMongoClient: true})
+mongoose.connect('mongodb://localhost/anon-1', {useMongoClient: true})
+
+const NoteSchema = new mongoose.Schema({
+    note: {
+        type: String,
+        required: true,
+    }
+}, {timestamps: true})
+mongoose.model('Note', NoteSchema)
+const Note = mongoose.model('Note')
 
 app.post("/note", (req, res) => {
-    console.log('You wanted to make a note')
+    console.log('You want to make a new note', req.body)
+    const newNote = new Note()
+    newNote.note = req.body.note
+    newNote.save( err => {
+        if (err) {
+            console.log("Failed to make new note", err)
+            res.sendStatus(400)
+        } else {
+            console.log("Whoop! Saved a new note")
+            res.sendStatus(200)
+        }
+        
+    })
 })
 
 app.get("/note", (req, res) => {
     console.log('You asked for a note')
-    let dummyNotes = [
-        {note:"Hi I'm a note", created:"12/13/2009"},
-        {note:"Why did I think that ray sponantiously coming up to me with help getting things done", created:"4/13/2009"},
-        {note:"I really like chocolate", created:"12/13/2012"}
-    ]
-    res.send(dummyNotes)
+    let allNotes = []
+    Note.find({}, (err, notes) => {
+        if (err) { console.log("We have an error getting notes", err) }
+        else {
+            console.log("Manages to get notes", notes)
+            for (let note of notes){
+                allNotes.push(note)
+            }
+            console.log("Sending them back", allNotes)
+            res.send(allNotes)
+        }
+    })
 })
 
 app.all("*", (req,res,next) => {

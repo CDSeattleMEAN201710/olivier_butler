@@ -3,14 +3,14 @@
 
 <form class="outline">
   <label>
-    Note: <input type="text" name="note">
+    Note: <input type="text" name="note" [(ngModel)]="inputState">
   </label>
-  <button>Hi There</button>
+  <button (click)="processSubmit()">Hi There</button>
 </form>
 
 <div class="notes_list">
-  <div class="note outline">
-    <p>Some note as a thing with bits of bobs.</p>
-    <sub>Noted on: Oop 3, 2077, 22:45 AM</sub>
+  <div class="note outline" *ngFor="let note of allNoteState">
+    <p>{{ note.note }}</p>
+    <sub>{{ note.createdAt | date:'medium'}}</sub>
   </div>
 </div>

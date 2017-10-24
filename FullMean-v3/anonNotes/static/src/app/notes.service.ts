@@ -7,14 +7,14 @@ import "rxjs/add/operator/map"
 export class NotesService {
 
   constructor(private _http: Http) { }
+
+  makeNote(note){
+    console.log("Service posting a note", note)
+    return this._http.post('/note', {note: note}).toPromise()
+  }
+
   getNotes(){
     console.log("Service getting notes")
-    this._http.get('/note').map(data=>data.json()).toPromise()
-    .then( data => {
-      console.log("Yay managed to get notes", data)
-    })
-    .catch( err => {
-      console.log("Fucked up getting notes", err)
-    })
+    return this._http.get('/note').map(data => data.json()).toPromise()
   }
 }
